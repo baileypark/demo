@@ -1,24 +1,34 @@
 package com.example.demo.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
-@ResponseBody
+import java.util.List;
+
+@RestController
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    // 상품 조회
-    @RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    // 전체 상품 조회
+    @GetMapping("/products")
+    public List<Product> findProducts() {
+        return productService.findProducts();
+    }
+
+    // 개별 상품 조회
+    @GetMapping("/products/{id}")
     public Product findProduct(@PathVariable int id) {
         return productService.findProduct(id);
     }
 
     // 상품 등록
-    @RequestMapping(value = "/products", method = RequestMethod.POST)
+    @PostMapping("/products")
     public Product saveProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
