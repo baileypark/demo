@@ -15,6 +15,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    public void connection() {
+        productRepository.connection();
+    }
+
     public Product findProduct(int id) {
         return productRepository.findProduct(id);
     }

@@ -1,7 +1,10 @@
 package com.example.demo.product;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +13,15 @@ import java.util.Map;
 //@Repository
 public class ProductRepository {
 
+    @Autowired
+    DataSource dataSource;
+
     private Map<Integer, Product> db = new HashMap<>();
     private int id = 1;
+
+    public void connection() {
+        DataSourceUtils.getConnection(dataSource);
+    }
 
     public Product findProduct(int id) {
         return db.get(id);
