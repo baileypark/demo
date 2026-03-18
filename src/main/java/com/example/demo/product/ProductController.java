@@ -15,10 +15,10 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/connect")
-    public void ProductController() {
-        productService.connection();
-    }
+//    @GetMapping("/connect")
+//    public void ProductController() {
+//        productService.connection();
+//    }
 
     // 전체 상품 조회
     @GetMapping("/products")
