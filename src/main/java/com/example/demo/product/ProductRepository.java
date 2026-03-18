@@ -5,6 +5,7 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,14 +32,16 @@ public class ProductRepository {
 
     public Product save(Product product) {
         System.out.println(product.getName());
-        db.put(id++, product);
+//        db.put(id++, product);
+        entityManager.persist(product);
         return product;
     }
 
     public List<Product> findProducts() {
 //        return new ArrayList<>(db.values());
-        return entityManager
-                .createQuery("SELECT p FROM Product p", Product.class)
-                .getResultList();
+        TypedQuery<Product> query = entityManager.createQuery("SELECT p FROM Product p", Product.class);
+        List<Product> products = query.getResultList();
+
+        return products;
     }
 }
