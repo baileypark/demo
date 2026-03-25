@@ -7,8 +7,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
-    @Bean
-    public ProductRepository productRepository() {
-        return new ProductRepository();
-    }
+//    @Bean
+//    public ProductRepository productRepository() {
+//        return new ProductRepository();
+//    }
+
 }

@@ -34,7 +34,19 @@ public class ProductController {
 
     // 상품 등록
     @PostMapping("/products")
-    public Product saveProduct(@RequestBody Product product) {
-        return productService.saveProduct(product);
+    public void saveProduct(@RequestBody Product product) {
+        productService.saveProduct(product);
+    }
+
+    // 상품 수정
+    @PutMapping("/products/{id}")
+    public void updateProduct(@RequestBody Product product, @PathVariable int id) {
+        productService.modifyProduct(product, id);
+    }
+
+    // 상품 삭제
+    @DeleteMapping("/products/{id}")
+    public void deleteProduct(@PathVariable int id) {
+        productService.deleteProduct(id);
     }
 }
